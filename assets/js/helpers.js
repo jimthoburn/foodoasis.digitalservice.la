@@ -112,6 +112,31 @@ window.oasis = window.oasis || {};
 			let minutes = Number(timeString.substring(timeString.length - 2));
 			return (hours * 60 * 60) + (minutes * 60);
 		}
+		isOpenNow = function(data, startTime, item) {
+			if (data.day && data.open && data.close) {
+				let nowSeconds;
+				let now;
+				const today = new Date();
+				now = !startTime ? new Date() : new Date(`October 24, 2017 ${startTime}`);
+				
+				let pacificTime = (now.toString().indexOf('(PDT)') >= 0) || (now.toString().indexOf('(PST)') >= 0);
+				nowSeconds = (now.getHours() * 60 * 60) + (now.getMinutes() * 60) + now.getSeconds(); 
+
+				// startTime not yet checking for days of the week
+				if (pacificTime &&
+					(DAYS_OF_WEEK[now.getDay()] === data.day.toLowerCase() || startTime) &&
+					nowSeconds > getSeconds(data.open) &&
+					nowSeconds < getSeconds(data.close) ) {
+					return true;  
+				}
+			}
+			// TBD: Should we show a special notice if it’s opening soon or closing soon?
+			return false;
+		}
+		/*
+		TODO: Test this feature and finish styling it. Here are some design possibilities…
+		https://github.com/hackforla/food-oasis-la/issues/72
+
 		isOpenNow = function(data, startTime, item, openDay) {
 			if (data.day && data.open && data.close) {
         let nowSeconds;
@@ -139,6 +164,8 @@ window.oasis = window.oasis || {};
 				// TBD: Should we show a special notice if it’s opening soon or closing soon?
 			}
 			return false;
+		}
+		*/
 	})();
 
 	window.oasis.INFINITY = INFINITY;
