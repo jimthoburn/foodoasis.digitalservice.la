@@ -1,7 +1,7 @@
 
 # Food Oasis
 
-* [How to make changes](#license)
+* [How to make changes](#how-to-make-changes)
 * [How to develop locally](#how-to-develop-locally)
 * [Speeding up Jekyll](#speeding-up-jekyll)
 * [Handy guides](#handy-guides)
