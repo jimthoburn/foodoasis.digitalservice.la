@@ -3,6 +3,18 @@
 <html lang="{{ locale }}" dir="ltr">
 <head>
 
+	<meta name="robots" content="noindex" />
+	<script>
+		window.addEventListener("DOMContentLoaded", function() {
+			if (document.querySelector("meta[content='noindex']")) {
+				var notice = document.createElement("p");
+				notice.role = "status";
+				notice.innerHTML = "<mark><em>This page contains a noindex meta element and won’t be indexed by search engines.</em></mark>";
+				document.querySelector("footer#navigation").appendChild(notice);
+			}
+		})
+	</script>
+
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
